@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:latest
+    volumes:
+      - ./dump:/dump
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "127.0.0.1:15432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: "pitchdeck"
+  redis:
+    image: redis
+    ports:
+      - "127.0.0.1:16379:6379"
+volumes:
+  postgres_data:

@@ -1,0 +1,10 @@
+[flake8]
+select = C90,E,F,W,B,B902,B903
+ignore = E501,W503
+import-order-style = google
+max-complexity = 10
+max-line-length = 120
+exclude =
+    .venv/*
+    node_modules
+application-import-names = apps,pitchdeck
