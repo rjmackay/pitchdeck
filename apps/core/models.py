@@ -1,11 +1,13 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 
 
-class TimeStampedModel(models.Model):
-    class Meta:
-        get_latest_by = "updated_at"
-        ordering = ("-updated_at", "-created_at")
-        abstract = True
+class PitchDeck(TimeStampedModel):
+    name = models.CharField(max_length=255)
+    original = models.FileField()
 
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_at = models.DateTimeField(auto_now=True, db_index=True)
+
+class PitchImage(models.Model):
+    pitch_deck = models.ForeignKey(PitchDeck, on_delete=models.CASCADE, related_name="images")
+    page = models.IntegerField()
+    image = models.ImageField()
