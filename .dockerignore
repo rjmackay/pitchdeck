@@ -1,0 +1,10 @@
+env/
+.git/
+node_modules
+**/node_modules/
+Dockerfile
+*.Dockerfile
+*.pyc
+staticfiles/
+static/
+media/

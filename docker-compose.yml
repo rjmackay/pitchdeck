@@ -1,19 +1,51 @@
 version: "3.8"
 services:
-  postgres:
+  web:
+    build:
+      dockerfile: ./docker/python/Dockerfile
+      context: .
+    entrypoint: /usr/src/app/docker/python/entrypoint.sh
+    command: python manage.py runserver_plus 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./docker/python/.env.dev
+      - ./.env.dev
+    depends_on:
+      - db
+    restart: always
+
+  migrate:
+    build:
+      dockerfile: ./docker/python/Dockerfile
+      context: .
+    entrypoint: /usr/src/app/docker/python/entrypoint.sh
+    command: python manage.py migrate
+    volumes:
+      - .:/usr/src/app/
+    env_file:
+      - ./docker/python/.env.dev
+      - ./.env.dev
+    depends_on:
+      - db
+    restart: "no"
+
+  db:
     image: postgres:latest
     volumes:
       - ./dump:/dump
       - postgres_data:/var/lib/postgresql/data/
     ports:
-      - "127.0.0.1:15432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: "pitchdeck"
+      - "15432:5432"
+    env_file:
+      - ./docker/db/.env.dev
+
   redis:
     image: redis
     ports:
-      - "127.0.0.1:16379:6379"
+      - "16379:6379"
+
 volumes:
   postgres_data:
