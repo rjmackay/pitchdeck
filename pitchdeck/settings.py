@@ -93,6 +93,8 @@ class Common(Configuration):
     # See http://whitenoise.evans.io/en/stable/
     STATIC_URL = "/static/"
 
+    MEDIA_URL = "/media/"
+
     # SESSION_COOKIE_SECURE = False
     # SECURE_BROWSER_XSS_FILTER = False
     # SECURE_CONTENT_TYPE_NOSNIFF = False

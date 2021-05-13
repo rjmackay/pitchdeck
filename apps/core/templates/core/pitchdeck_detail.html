@@ -1,0 +1,10 @@
+<!-- {{ object.name }} -->
+
+{% for image in object.images.all %}
+    {{ image.url }}
+    <img src="{{ image.image.url }}" width="800" />
+{% endfor %}
+
+<p>
+    <a href="{{ object.original.url }}">View original</a>
+</p>
