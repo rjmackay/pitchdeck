@@ -10,6 +10,7 @@ from configurations import values
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
+from sentry_sdk.integrations.rq import RqIntegration
 
 
 class Common(Configuration):
@@ -112,8 +113,6 @@ class Common(Configuration):
 
     # Sentry
     SENTRY_DSN: Optional[str] = values.URLValue(environ_prefix=None, default=None)
-    if SENTRY_DSN:
-        sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration(), RedisIntegration()])
 
     # Database
     DATABASES = values.DatabaseURLValue()
@@ -134,6 +133,12 @@ class Common(Configuration):
                 "ASYNC": self.RQ_ASYNC,
             },
         }
+
+    @classmethod
+    def setup(cls):
+        super().setup()
+        if cls.SENTRY_DSN:
+            sentry_sdk.init(dsn=cls.SENTRY_DSN, integrations=[DjangoIntegration(), RedisIntegration(), RqIntegration()])
 
 
 class Dev(Common):
