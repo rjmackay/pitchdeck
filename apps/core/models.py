@@ -9,6 +9,9 @@ class PitchDeck(TimeStampedModel):
 
 
 class PitchImage(models.Model):
+    class Meta:
+        ordering = ["page"]
+
     pitch_deck = models.ForeignKey(PitchDeck, on_delete=models.CASCADE, related_name="images")
     page = models.IntegerField()
     image = models.ImageField()
