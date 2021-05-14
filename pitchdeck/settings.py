@@ -15,6 +15,7 @@ from sentry_sdk.integrations.redis import RedisIntegration
 class Common(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
     SECRET_KEY = values.SecretValue()
