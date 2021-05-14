@@ -1,5 +1,6 @@
 # pull official base image
 FROM python:3.9.2
+ARG PIPENV_SYSTEM=1
 
 # set work directory
 WORKDIR /usr/src/app
@@ -23,13 +24,10 @@ RUN apt-get update \
 
 # install dependencies
 RUN pip install --upgrade pip pipenv
+ENV PIPENV_SYSTEM=$PIPENV_SYSTEM
 COPY ./Pipfile .
 COPY ./Pipfile.lock .
 RUN pipenv sync --dev
-
-# copy entrypoint.sh
-COPY ./docker/python/entrypoint.sh .
-ENTRYPOINT ["/usr/src/app/docker/python/entrypoint.sh"]
 
 # copy project
 COPY . .

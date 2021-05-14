@@ -1,10 +1,9 @@
-version: "3.8"
+version: "3.9"
 services:
   web:
     build:
-      dockerfile: ./Dockerfile
       context: .
-    command: python manage.py runserver_plus 0.0.0.0:8000
+    command: ./manage.py runserver_plus 0.0.0.0:8000
     volumes:
       - .:/usr/src/app/
     ports:
@@ -19,9 +18,8 @@ services:
 
   worker:
     build:
-      dockerfile: ./Dockerfile
       context: .
-    command: python manage.py rqworker default
+    command: ./manage.py rqworker default
     volumes:
       - .:/usr/src/app/
     env_file:
@@ -34,9 +32,9 @@ services:
 
   migrate:
     build:
-      dockerfile: ./Dockerfile
       context: .
-    command: python manage.py migrate
+    command: ./manage.py migrate
+    entrypoint: /usr/src/app/docker/python/entrypoint.sh
     volumes:
       - .:/usr/src/app/
     env_file:
