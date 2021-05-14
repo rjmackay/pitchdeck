@@ -1,7 +1,9 @@
 {% extends 'core/base.html' %}
 {% block page_title %}Home - {{ super }}{% endblock %}
 {% block page_body %}
-    <!-- {{ object.name }} -->
+    {% if not object.processed %}
+    <p>This deck is still being processed, refresh the page to check for updates.</p>
+    {% endif %}
 
     {% for image in object.images.all %}
         {{ image.url }}
