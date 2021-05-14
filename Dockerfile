@@ -29,6 +29,7 @@ RUN pipenv sync --dev
 
 # copy entrypoint.sh
 COPY ./docker/python/entrypoint.sh .
+ENTRYPOINT ["/usr/src/app/docker/python/entrypoint.sh"]
 
 # copy project
 COPY . .
