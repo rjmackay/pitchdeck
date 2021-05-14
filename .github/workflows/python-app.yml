@@ -25,8 +25,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pipenv
-        pipenv install --dev --system --deploy
+        pip install pipenv black flake8 flake8-import-order
+        pipenv sync --dev
     - name: Run linters
       uses: wearerequired/lint-action@v1
       with:
@@ -36,4 +36,4 @@ jobs:
         flake8: true
     - name: Test with pytest
       run: |
-        pytest
+        pipenv run pytest
