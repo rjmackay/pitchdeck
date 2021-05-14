@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ee9b05d82b0bc15670ee8f1eb987b7c913dd8c7974231203cab6ccc1efef060b"
+            "sha256": "32f86b52bfab77777a514e9462cc9f551c26410b8da7cf488e16971dc8272ce8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -72,6 +72,14 @@
             ],
             "index": "pypi",
             "version": "==3.1.3"
+        },
+        "django-material": {
+            "hashes": [
+                "sha256:5a7144d1029b4a2bfee2e5d0d8d00f30742dd7e3f868b3787d8cd61e54f26437",
+                "sha256:816513170771bcb2540b5ce314fbef1a906906220587a9cb9521e61092a6f610"
+            ],
+            "index": "pypi",
+            "version": "==1.9.0"
         },
         "django-model-utils": {
             "hashes": [
@@ -336,7 +344,7 @@
                 "sha256:f0b278ce10936db1a37e6954e15a3730bea96a0997c26d7fee88e6c396c2086d",
                 "sha256:f11642dddbb0253cc8853254301b51390ba0081750a8ac03f20ea8103f0c56b6"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
             "version": "==5.5"
         },
         "distlib": {
