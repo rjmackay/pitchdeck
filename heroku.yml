@@ -14,7 +14,7 @@ release:
   command:
     - python manage.py migrate
 run:
-  web: python manage.py runserver_plus 0.0.0.0:8000
+  web: gunicorn pitchdeck.wsgi --log-file -
   worker:
     image: web
     command:
