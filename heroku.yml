@@ -8,14 +8,18 @@ setup:
     as: BUCKETEER
 build:
   docker:
-    web: Dockerfile
+    web:
+      dockerfile: Dockerfile
 release:
   image: web
   command:
-    - python manage.py migrate
+    - python ./manage.py migrate
 run:
-  web: gunicorn pitchdeck.wsgi --log-file -
+  web:
+    image: web
+    command:
+      - gunicorn pitchdeck.wsgi --log-file -
   worker:
     image: web
     command:
-      - python manage.py rqworker default
+      - python ./manage.py rqworker default
