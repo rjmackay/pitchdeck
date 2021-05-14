@@ -34,6 +34,7 @@ class Common(Configuration):
         "django.contrib.messages",
         "django.contrib.staticfiles",
         "django_extensions",
+        "django_rq",
         "material",
         "apps.core",
     ]
@@ -119,10 +120,24 @@ class Common(Configuration):
     # Cache
     CACHES = values.CacheURLValue(default="locmem://")
 
+    # Queue
+    REDIS_URL = values.Value(environ_prefix=None)
+    RQ_ASYNC = True
+
+    @property
+    def RQ_QUEUES(self):
+        return {
+            "default": {
+                "URL": self.REDIS_URL,
+                "DEFAULT_TIMEOUT": 360,
+                "ASYNC": self.RQ_ASYNC,
+            },
+        }
+
 
 class Dev(Common):
     DEBUG = True
 
 
 class Test(Common):
-    pass
+    RQ_ASYNC = False
