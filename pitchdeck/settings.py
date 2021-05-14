@@ -129,8 +129,11 @@ class Common(Configuration):
         return {
             "default": {
                 "URL": self.REDIS_URL,
-                "DEFAULT_TIMEOUT": 360,
+                "DEFAULT_TIMEOUT": 150,
                 "ASYNC": self.RQ_ASYNC,
+                "CONNECTION_KWARGS": {
+                    "max_connections": 2,
+                },
             },
         }
 
