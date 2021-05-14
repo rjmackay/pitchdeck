@@ -2,7 +2,7 @@ from io import BytesIO
 
 from django.core.files.base import ContentFile
 from django_rq import job
-from pdf2image import convert_from_path
+from pdf2image import convert_from_bytes
 
 from .models import PitchDeck
 from .models import PitchImage
@@ -11,7 +11,7 @@ from .models import PitchImage
 @job
 def convert_pitch_to_image(pitch_id):
     pitch = PitchDeck.objects.get(pk=pitch_id)
-    images = convert_from_path(pitch.original.path, fmt="png", size=(800, None))
+    images = convert_from_bytes(pitch.original.read(), fmt="png", size=(800, None))
     for page, image in enumerate(images):
         pitch_image = PitchImage(pitch_deck=pitch, page=page)
         # dest = default_storage.open(f"{upload.name}_{i}.png", "wb+")
