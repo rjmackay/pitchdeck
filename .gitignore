@@ -89,4 +89,5 @@ local_settings.py
 .env*
 .python-version
 db.sqlite3
-media
+media/*
+staticfiles/*
