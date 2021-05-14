@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% block page_title %}Home - {{ super }}{% endblock %}
+{% block page_title %}Home - {{ block.super }}{% endblock %}
 {% block page_body %}
     {% if not object.processed %}
     <p>This deck is still being processed, refresh the page to check for updates.</p>
