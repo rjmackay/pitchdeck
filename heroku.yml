@@ -1,0 +1,17 @@
+setup:
+  addons:
+  - plan: heroku-postgresql:hobby-dev
+    as: DATABASE
+  - plan: rediscloud:30
+    as: REDIS
+  - plan: bucketeer:hobbyist
+    as: BUCKETEER
+build:
+  docker:
+    web: Dockerfile
+release:
+  image: web
+  command:
+    - python manage.py migrate
+run:
+  web: python manage.py runserver_plus 0.0.0.0:8000
