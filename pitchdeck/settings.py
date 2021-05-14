@@ -141,3 +141,18 @@ class Dev(Common):
 
 class Test(Common):
     RQ_ASYNC = False
+
+
+class Prod(Common):
+    # Media storage
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+    # AWS
+    AWS_ACCESS_KEY_ID = values.Value(environ_prefix="", environ_name="BUCKETEER_AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = values.Value(environ_prefix="", environ_name="BUCKETEER_AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = values.Value(environ_prefix="", environ_name="BUCKETEER_BUCKET_NAME")
+
+    AWS_DEFAULT_ACL = None
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    AWS_QUERYSTRING_AUTH = values.BooleanValue(False, environ_prefix="")
+    AWS_LOCATION = "pitchdeck/"
