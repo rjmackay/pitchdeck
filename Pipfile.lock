@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e0df57bfee26ed6272b669d3fd0cc0648b1128f57b1e381ef7a80d358e16ba96"
+            "sha256": "4cbcde18d4ae87596531154bf5d6a52de5d2c5f47bf71e28822d70c393cecfce"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -144,6 +144,14 @@
             ],
             "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==0.10.0"
+        },
+        "model-bakery": {
+            "hashes": [
+                "sha256:3bd63ac4135a6918f1b7bb3da31cd9c44283d99c37dc6315c13d061026d6ab2d",
+                "sha256:713b2d32319e033b221714b5c3a3e1c88e0c40c84481b21955c44979801e5e03"
+            ],
+            "index": "pypi",
+            "version": "==1.3.1"
         },
         "pdf2image": {
             "hashes": [

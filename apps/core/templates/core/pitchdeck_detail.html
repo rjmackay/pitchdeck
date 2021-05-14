@@ -10,7 +10,9 @@
         <img src="{{ image.image.url }}" width="800" />
     {% endfor %}
 
+    {% if object.original %}
     <p>
         <a href="{{ object.original.url }}">View original</a>
     </p>
+    {% endif %}
 {% endblock %}
