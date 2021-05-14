@@ -20,7 +20,7 @@ class Common(Configuration):
     SECRET_KEY = values.SecretValue()
     DEBUG = values.BooleanValue(False)
 
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = values.ListValue(["localhost"])
 
     INTERNAL_IPS = ["127.0.0.1"]
 
