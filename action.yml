@@ -1,0 +1,15 @@
+# action.yml
+name: 'Pytest'
+description: 'Run Pytest'
+inputs:
+  command:  # id of input
+    description: 'Command to run'
+    required: true
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.command }}
