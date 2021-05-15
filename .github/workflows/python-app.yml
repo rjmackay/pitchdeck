@@ -34,7 +34,7 @@ jobs:
 
     steps:
     - name: Install poppler-utils
-      run: sudo apt-get install poppler-utils
+      run: sudo apt-get install poppler-utils libreoffice
     - uses: actions/checkout@v2
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
