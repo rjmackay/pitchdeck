@@ -6,6 +6,7 @@ A simple app that converts PDF pitch decks to images and displays them.
 
 - Django, PostgreSQL, Redis & RQ.
 - PDF conversion is done by the [pdf2image](https://github.com/Belval/pdf2image) library.
+- PPTX conversion is done via libreoffice, the pdf2image. (experimental)
 - Project template from [key/django-project-template](https://github.com/key/django-project-template)
 
 ## How to install

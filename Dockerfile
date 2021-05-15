@@ -15,7 +15,7 @@ RUN apt-get update \
     && apt-get --no-install-recommends install -y \
     wait-for-it \
     # extra libs
-    poppler-utils \
+    poppler-utils libreoffice \
     # Cleanup after installation
     && apt-get clean -y \
     && apt-get autoclean -y \
