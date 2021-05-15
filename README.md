@@ -48,7 +48,7 @@ docker/pytest
 
 ## Deployment
 
-It is possible to deploy to Heroku or to your own server.
+Docker containers can be deployed to Heroku directly. Checkout the code and the follow the [steps here](https://devcenter.heroku.com/articles/build-docker-images-heroku-yml#creating-your-app-from-setup) to create an app directly from the heroku.yml
 
 ## License
 
