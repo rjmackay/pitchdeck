@@ -13,6 +13,24 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: django-insecure-!8#l!x^jdx$#2g)9)9-dv(ls@8d!ikjenq5m%i^0m!u&*x0znm
+      DATABASE_URL: postgresql://postgres:password@localhost:5432/pitchdeck
+      REDIS_URL: redis://localhost:6379/0
+
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: pitchdeck
+        ports:
+          - 5432:5432
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
 
     steps:
     - name: Install poppler-utils
