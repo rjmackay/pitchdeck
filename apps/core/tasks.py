@@ -1,17 +1,22 @@
 from io import BytesIO
+import logging
 
 from django.core.files.base import ContentFile
 from django_rq import job
-from pdf2image import convert_from_bytes
 
+from .converters import Converters
 from .models import PitchDeck
 from .models import PitchImage
+
+logger = logging.getLogger(__name__)
 
 
 @job
 def convert_pitch_to_image(pitch_id):
+    logger.info("Start converting pitch: %s", pitch_id)
     pitch = PitchDeck.objects.get(pk=pitch_id)
-    images = convert_from_bytes(pitch.original.read(), fmt="png", size=(800, None))
+    images = Converters.convert(pitch.original)
+    logger.info("Pitch converted, saving %s images", len(images))
     for page, image in enumerate(images):
         pitch_image = PitchImage(pitch_deck=pitch, page=page)
         # dest = default_storage.open(f"{upload.name}_{i}.png", "wb+")
@@ -22,3 +27,4 @@ def convert_pitch_to_image(pitch_id):
 
     pitch.processed = True
     pitch.save()
+    logger.info("Finished converting pitch: %s", pitch_id)
